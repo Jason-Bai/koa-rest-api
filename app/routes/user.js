@@ -1,8 +1,12 @@
 const Router = require('koa-router');
 const controllers = require('../controllers');
 
-const router = new Router();
+const router = new Router({
+  prefix: '/users',
+});
 
-router.get('/users', controllers.user.list);
+router.get('/', controllers.user.list);
+
+router.get('/:id', controllers.user.detail);
 
 module.exports = router;
