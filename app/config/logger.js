@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const bunyanLogStash = require('bunyan-logstash');
+const bunyanLogStashTcp = require('bunyan-logstash-tcp');
 const { env, logger } = require('./');
 
 
@@ -25,7 +25,7 @@ if (env === 'production') {
     // output to logstash
     logger.streams.push({
       type: 'raw',
-      stream: bunyanLogStash.createStream({
+      stream: bunyanLogStashTcp.createStream({
         application: process.env.APP_NAME,
         host: process.env.LOGSTASH_HOST || '127.0.0.1',
         port: process.env.LOGSTASH_PORT || '5044',
